@@ -12,12 +12,27 @@ interface VehicleCardProps {
 export default function VehicleCard({ vehicle }: VehicleCardProps) {
   const speedPercentage = Math.min((vehicle.speed / 120) * 100, 100);
 
+  const getVehicleStatus = () => {
+    if (vehicle.acc === 'ON' && vehicle.speed > 0) {
+      return { label: 'Running', color: 'text-emerald-500' };
+    }
+    if (vehicle.acc === 'OFF' && vehicle.speed === 0) {
+      return { label: 'Parking', color: 'text-primary-blue' };
+    }
+    if (vehicle.acc === 'ON' && vehicle.speed === 0) {
+      return { label: 'Stop', color: 'text-red-500' };
+    }
+    return { label: 'Unknown', color: 'text-gray-500' };
+  };
+
+  const status = getVehicleStatus();
+
   return (
     <div className="flex flex-col">
       <div className="bg-white border-t border-x border-gray-200 rounded-t-sm px-5 py-2 flex items-center gap-2 self-start  z-10 -mb-[1px]">
         <span className="text-[11px] text-gray-400 font-medium">Status :</span>
         <img src={iconDispatch} alt="Dispatch" className="w-4.5 h-4.5" />
-        <span className="text-[11px] font-bold text-gray-700">Dispatch</span>
+        <span className={`text-[11px] font-bold ${status.color}`}>{status.label}</span>
       </div>
 
       <div className="bg-white rounded-sm rounded-tl-none border border-gray-200 overflow-hidden flex flex-col ">

@@ -2,7 +2,7 @@ import iconNotif from './../assets/iconNotif.svg';
 import iconAvatar from './../assets/iconAvatar.svg';
 import iconFlag from './../assets/iconFlag.svg';
 import iconDropDown from './../assets/iconDropDown.svg';
-import iconNavbar from '../assets/iconNavbar.svg';
+import iconNavbar from '../assets/IconNavbar.svg';
 interface NavbarProps {
   username: string;
   searchQuery: string;
